@@ -1,2 +1,2 @@
-# somogyi-elekronics
-Gyakorló oldal a Somogyi Elektronics cégnek
+# som.zoli dev page
+Gyakorló oldal a saját portifóliómhoz.
