@@ -17,7 +17,7 @@ input,
 textarea,
 select,
 label {
-    cursor: url("cursor.png"), default !important;
+    cursor: url("img/cursor.png"), default !important;
 }
 
 html {
