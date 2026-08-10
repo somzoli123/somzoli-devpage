@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Somzoli Developments — Kód. Design. Élmény.</title>
+    <title>Kapcsolat — Somzoli Developments</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
@@ -34,60 +34,43 @@
 
     <main>
 
-        <section id="hero" class="hero">
+        <section class="page-hero">
             <div class="hero-bg"></div>
             <div class="shape shape-1"></div>
             <div class="shape shape-2"></div>
             <div class="shape shape-3"></div>
             <div class="hero-inner">
-                <span class="hero-badge hero-title-elm">Somzoli Elektronik</span>
-                <h1 class="hero-title hero-title-elm">Kód. Design.<br><span class="grad">Élmény.</span></h1>
-                <p class="hero-sub hero-title-elm">Modern weboldalak, amik görgetés közben kelnek életre.</p>
-                <a href="#home-links" class="btn btn-grad hero-title-elm">Nézd meg, mit tudok</a>
-            </div>
-            <div class="scroll-hint">
-                <span class="scroll-hint-line"></span>
+                <span class="hero-badge">Kapcsolat</span>
+                <h1 class="hero-title">Dolgozzunk együtt.</h1>
+                <p class="hero-sub">Írj, és a nap folyamán válaszolok.</p>
             </div>
         </section>
 
-        <section id="home-links" class="section home-links">
+        <section class="section contact">
             <div class="container">
-                <div class="text-center mb-5">
-                    <span class="eyebrow reveal" data-dir="up">Fedezd fel</span>
-                    <h2 class="h-title reveal" data-dir="up">Mit néznél meg először?</h2>
-                </div>
-                <div class="row g-4">
-                    <div class="col-md-6 col-lg-3">
-                        <a href="about.html" class="link-card reveal" data-dir="up">
-                            <i class="icon">AB</i>
-                            <h3>Bemutatkozás</h3>
-                            <p>Ismerj meg engem és a filozófiámat a web fejlesztésről.</p>
-                            <span class="arrow">Tovább →</span>
-                        </a>
+                <div class="row align-items-center g-5">
+                    <div class="col-lg-5">
+                        <span class="eyebrow reveal" data-dir="up">Kapcsolat</span>
+                        <h2 class="h-title reveal" data-dir="up">Dolgozzunk együtt.</h2>
+                        <p class="reveal" data-dir="up">Írj, és a nap folyamán válaszolok. Szívesen segítek megtalálni a legjobb megoldást a projektedhez.</p>
+                        <p class="reveal" data-dir="up"><strong>Email:</strong> hello@Somzolidev.hu</p>
                     </div>
-                    <div class="col-md-6 col-lg-3">
-                        <a href="services.html" class="link-card reveal" data-dir="up">
-                            <i class="icon">SV</i>
-                            <h3>Szolgáltatások</h3>
-                            <p>Lásd, hogyan épül fel egy weboldal lépésről lépésre.</p>
-                            <span class="arrow">Tovább →</span>
-                        </a>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <a href="gallery.html" class="link-card reveal" data-dir="up">
-                            <i class="icon">GA</i>
-                            <h3>Galéria</h3>
-                            <p>Pillants be a projektekbe, amin dolgoztam.</p>
-                            <span class="arrow">Tovább →</span>
-                        </a>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <a href="contact.html" class="link-card reveal" data-dir="up">
-                            <i class="icon">KO</i>
-                            <h3>Kapcsolat</h3>
-                            <p>Dolgozzunk együtt — írj, és válaszolok a nap folyamán.</p>
-                            <span class="arrow">Tovább →</span>
-                        </a>
+                    <div class="col-lg-7">
+                        <form id="contactForm" class="contact-form reveal" data-dir="right" novalidate>
+                            <div class="mb-3">
+                                <label for="cName" class="form-label">Név</label>
+                                <input type="text" class="form-control" id="cName" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="cMail" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="cMail" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="cMsg" class="form-label">Üzenet</label>
+                                <textarea class="form-control" id="cMsg" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-grad">Küldés</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -136,6 +119,29 @@
             }, { threshold: 0.2 });
             document.querySelectorAll('.reveal, .g-item').forEach(el => io.observe(el));
         }
+
+        document.getElementById('contactForm').addEventListener('submit', e => {
+            e.preventDefault();
+            const name = document.getElementById('cName').value.trim();
+            const mail = document.getElementById('cMail').value.trim();
+            const msg = document.getElementById('cMsg').value.trim();
+            if (!name || !mail || !msg) {
+                alert('Kérlek, tölts ki minden mezőt!');
+                return;
+            }
+            const subject = encodeURIComponent('Üzenet ' + name + ' -tól');
+            const body = encodeURIComponent('Név: ' + name + '\nEmail: ' + mail + '\n\n' + msg);
+            const confirmBtn = e.target.querySelector('button');
+            const original = confirmBtn.textContent;
+            confirmBtn.disabled = true;
+            confirmBtn.textContent = 'Megnyitom az email kliensed...';
+            window.location.href = 'mailto:zoliaki0323@gmail.com?subject=' + subject + '&body=' + body;
+            setTimeout(() => {
+                confirmBtn.disabled = false;
+                confirmBtn.textContent = original;
+                document.getElementById('contactForm').reset();
+            }, 3000);
+        });
     </script>
 </body>
 </html>
